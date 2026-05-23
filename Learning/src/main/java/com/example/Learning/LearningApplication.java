@@ -8,7 +8,9 @@ import org.springframework.context.ApplicationContext;
 public class LearningApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LearningApplication.class, args);
+        ApplicationContext context = SpringApplication.run(LearningApplication.class, args);
+        context.getBean(API.class);
+
 
 
     }

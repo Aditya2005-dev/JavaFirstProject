@@ -1,0 +1,42 @@
+<!Doctype>
+<html>
+<head>
+    <title>Calculate Salary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Calculate Salary</h2>
+    <label>Salary:</label>
+    <input type="text" id="salary"><br><br>
+    <button  type="submit" onclick="calculateSalary()">Calculate</button>
+    <h3 id="message"></h3>
+
+</body>
+
+    <script>
+        function calculateSalary(){
+
+        let salary = document.getElementById("salary").value;
+
+        fetch("http://localhost:8080/addemployee/calculate", {
+
+            method : "POST",
+
+            headers : {
+                "Content-Type" : "application/json"
+            },
+
+            body : JSON.stringify(salary)
+
+        })
+
+        .then(response => response.text())
+
+        .then(data => {
+
+            document.getElementById("message").innerText = data;
+
+        })
+        }
+    </script>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>Employee Management System</h2>
+
+<label>First Name:</label>
+<input type="text" id="firstName">
+
+<br><br>
+
+<label>Last Name:</label>
+<input type="text" id="lastName">
+
+<br><br>
+
+
+
+<br><br>
+
+<button onclick="fun()">Submit</button>
+
+<h3 id="message"></h3>
+
+<button onclick="window.location.href='Salary.html'">
+
+    Calculate Salary
+
+</button>
+
+<script>
+
+    function fun(){
+
+        let firstName = document.getElementById("firstName").value;
+
+        let lastName = document.getElementById("lastName").value;
+
+
+
+        let employee = {firstName: firstName, lastName: lastName};
+
+
+
+        fetch("http://localhost:8080/addemployee/name", {
+
+            method : "POST",
+
+            headers : {
+                "Content-Type" : "application/json"
+            },
+
+            body : JSON.stringify(employee)
+
+        })
+
+        .then(response => response.text())
+
+        .then(data => {
+
+            document.getElementById("message").innerText = data;
+
+        })
+
+        .catch(error => {
+
+            console.log(error);
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
